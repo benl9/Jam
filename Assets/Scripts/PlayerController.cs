@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour {
 		if (collision.gameObject.tag == "Ground") {
 			jump = true; 
 		} 
-		else if (collision.gameObject.tag == "Spikes") {
+		else if (collision.gameObject.tag == "Death") {
 			transform.position = spawn; 
 		}
 	}
