@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		DontDestroyOnLoad(player);
+		maxJump = 5; 
+		maxVelocity = 5; 
 	}
 	
 	// Update is called once per frame
@@ -40,6 +42,12 @@ public class PlayerController : MonoBehaviour {
 		if (collision.gameObject.tag == "Ground") {
 			jump = true; 
 		} 
+		else if(collision.gameObject.tag == "Checkpoint"){
+			float x = transform.position.x;
+			float y = transform.position.y + 3;
+			Vector2 respawn = new Vector2(x,y);
+			spawn = respawn; 
+		}
 		else if (collision.gameObject.tag == "HitBox"){
 			Debug.Log ("Something");
 			DestroyObject (collision.gameObject.transform.parent.gameObject);
