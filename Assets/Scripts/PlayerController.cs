@@ -40,9 +40,13 @@ public class PlayerController : MonoBehaviour {
 		if (collision.gameObject.tag == "Ground") {
 			jump = true; 
 		} 
+		else if (collision.gameObject.tag == "HitBox"){
+			Debug.Log ("Something");
+			DestroyObject (collision.gameObject.transform.parent.gameObject);
+		}
 		else if (collision.gameObject.tag == "Death") {
 			transform.position = spawn; 
-		}
+		}	
 	}
 	void OnCollisionExit2D(Collision2D collision){
 		if (collision.gameObject.tag == "Ground") {
