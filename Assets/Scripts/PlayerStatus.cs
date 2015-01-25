@@ -7,7 +7,7 @@ public class PlayerStatus : MonoBehaviour {
 	public int deaths = 0; 
 	public bool deflector = false; 
 	PlayerController controller;
-	public GameObject player;
+	public AudioClip[] deathClips = new AudioClip[11];
 	// Use this for initialization
 	void Start (){ 
 		controller = GetComponent<PlayerController>();
@@ -31,22 +31,26 @@ public class PlayerStatus : MonoBehaviour {
 		}
 		else if (collision.gameObject.tag == "Death") {
 			//return player to spawn point
-			player.transform.position = spawn; 
+			transform.position = spawn; 
 			deaths ++; 
 			if (deaths == 4){	
 				controller.maxJump = 10;
-				//play specific sound clip
+				audio.clip = deathClips[8]; 
+				audio.Play ();
 			}
 			else if (deaths == 8){
 				controller.maxVelocity = 10;
-				//play specific sound clip
+				audio.clip = deathClips[9]; 
+				audio.Play ();
 			}
 			else if (deaths == 12){
 				deflector = true; 
-				//play specific sound clip
+				audio.clip = deathClips[10]; 
+				audio.Play ();
 			}
 			else{
-				//play random sound clip
+				audio.clip = deathClips[Random.Range(0,7)];
+				audio.Play (); 
 			}
 		} 
 		else if (collision.gameObject.tag == "Bullet"){
@@ -60,9 +64,10 @@ public class PlayerStatus : MonoBehaviour {
 			}
 			else{
 			//die
-				player.transform.position = spawn; 
+				transform.position = spawn; 
 				deaths++; 
-				//play random sound clip
+				audio.clip = deathClips[Random.Range(0,7)];
+				audio.Play (); 
 			}
 		}
 	}
