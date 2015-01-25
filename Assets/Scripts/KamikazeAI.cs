@@ -5,6 +5,7 @@ public class KamikazeAI : MonoBehaviour {
 
 	Transform player;
 	public Transform target; 
+	public float speed;
 
 
 	// Use this for initialization
@@ -22,7 +23,7 @@ public class KamikazeAI : MonoBehaviour {
 		float enemyX = target.transform.position.x;
 		float playerX = player.position.x; 
 		if(Mathf.Abs (enemyX - playerX) <= 3) {
-			target.rigidbody2D.gravityScale = 4;
+			target.rigidbody2D.gravityScale = speed;
 
 		}
 	}
