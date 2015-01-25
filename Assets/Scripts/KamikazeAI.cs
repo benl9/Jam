@@ -6,6 +6,7 @@ public class KamikazeAI : MonoBehaviour {
 	Transform player;
 	public Transform target; 
 	public float speed;
+	public float maxJump;
 
 
 	// Use this for initialization
@@ -19,12 +20,16 @@ public class KamikazeAI : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 	
-
 		float enemyX = target.transform.position.x;
 		float playerX = player.position.x; 
-		if(Mathf.Abs (enemyX - playerX) <= 3) {
-			target.rigidbody2D.gravityScale = speed;
+		float enemyY = target.transform.position.y;
+		float playerY = player.transform.position.y;
 
+		if ((enemyY - playerY) <= maxJump) {
+			if (Mathf.Abs (enemyX - playerX) <= 3) {
+				target.rigidbody2D.gravityScale = speed;
+
+			}
 		}
 	}
 	

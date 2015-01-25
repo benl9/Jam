@@ -9,8 +9,8 @@ public class PlayerController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		DontDestroyOnLoad(player);
-		maxJump = 5; 
-		maxVelocity = 5; 
+		//maxJump = 5; 
+		//maxVelocity = 5; 
 	}
 	
 	// Update is called once per frame
