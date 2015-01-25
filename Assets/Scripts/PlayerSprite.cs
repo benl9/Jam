@@ -12,41 +12,49 @@ public class PlayerSprite : MonoBehaviour {
 	public Sprite runningS;
 	public Sprite jumpingN;
 	public Sprite jumpingS;
+	public Sprite current; 
 	
 	// Use this for initialization
 	void Start () {
 		controller = GetComponent<PlayerController>();
 		status = GetComponent<PlayerStatus>(); 
 		spriteMaker = GetComponent<SpriteRenderer>(); 
+		current = standingN;
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		//find sprite needed fot the situation
+		Sprite needed; 
 		if(status.deflector){
 			if(controller.jump){
 				if(rigidbody2D.velocity.x == 0){
-					spriteMaker.sprite = standingS;
+					needed = standingS;
 				}
 				else{
-					spriteMaker.sprite = runningS;
+					needed = runningS;
 				}
 			}
 			else{
-				spriteMaker.sprite = jumpingS;
+				needed = jumpingS;
 			}
 		}
 		else{
 			if(controller.jump){
 				if(rigidbody2D.velocity.x == 0){
-					spriteMaker.sprite = standingN;
+					needed = standingN;
 				}
 				else{
-					spriteMaker.sprite = runningN;
+					needed = runningN;
 				}
 			}
 			else{
-				spriteMaker.sprite = jumpingN;
+				needed = jumpingN;
 			}
+		}
+		if(current != needed){
+			current = needed;
+			spriteMaker.sprite = current; 
 		}
 	}
 }

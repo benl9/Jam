@@ -7,6 +7,7 @@ public class PlayerStatus : MonoBehaviour {
 	public int deaths = 0; 
 	public bool deflector = false; 
 	PlayerController controller;
+	public GameObject player;
 	// Use this for initialization
 	void Start (){ 
 		controller = GetComponent<PlayerController>();
@@ -15,22 +16,22 @@ public class PlayerStatus : MonoBehaviour {
 	void Update () {
 		
 	}
-	void OnColiisionEnter2D(Collision collision){
+	void OnCollisionEnter2D(Collision2D collision){
 		if(collision.gameObject.tag == "Checkpoint"){
 			//change spawn point
 			float x = transform.position.x;
-			float y = transform.position.y + 3;
+			float y = transform.position.y + 1;
 			Vector2 respawn = new Vector2(x,y);
 			spawn = respawn; 
 		}
 		else if (collision.gameObject.tag == "HitBox"){
 			//destroy the roomba
 			DestroyObject (collision.gameObject.transform.parent.gameObject);
-			kills ++; 
+			kills++; 
 		}
 		else if (collision.gameObject.tag == "Death") {
 			//return player to spawn point
-			transform.position = spawn; 
+			player.transform.position = spawn; 
 			deaths ++; 
 			if (deaths == 4){	
 				controller.maxJump = 10;
@@ -53,13 +54,13 @@ public class PlayerStatus : MonoBehaviour {
 			if(deflector){
 			//reflect bullet
 				float x = -collision.gameObject.rigidbody2D.velocity.x;
-				float y = collision.gameObject.rigidbody2D.velocity.y;
+				float y = -collision.gameObject.rigidbody2D.velocity.y;
 				Vector2 velocityB = new Vector2(x,y);
 				collision.gameObject.rigidbody2D.velocity = velocityB; 
 			}
 			else{
 			//die
-				transform.position = spawn; 
+				player.transform.position = spawn; 
 				deaths++; 
 				//play random sound clip
 			}
