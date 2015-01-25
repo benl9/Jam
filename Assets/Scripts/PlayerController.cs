@@ -2,11 +2,11 @@
 using System.Collections;
 
 public class PlayerController : MonoBehaviour {
-	public Vector2 spawn;
 	public float maxVelocity;
 	public float maxJump; 
-	public GameObject player; 
-	bool jump = false; 
+	public GameObject player;
+	bool jump = false;
+	public bool deflector = false;  
 	// Use this for initialization
 	void Start () {
 		DontDestroyOnLoad(player);
@@ -40,24 +40,13 @@ public class PlayerController : MonoBehaviour {
 	}
 	void OnCollisionEnter2D(Collision2D collision){
 		if (collision.gameObject.tag == "Ground") {
+			//allow player to jump
 			jump = true; 
-		} 
-		else if(collision.gameObject.tag == "Checkpoint"){
-			float x = transform.position.x;
-			float y = transform.position.y + 3;
-			Vector2 respawn = new Vector2(x,y);
-			spawn = respawn; 
 		}
-		else if (collision.gameObject.tag == "HitBox"){
-			Debug.Log ("Something");
-			DestroyObject (collision.gameObject.transform.parent.gameObject);
-		}
-		else if (collision.gameObject.tag == "Death") {
-			transform.position = spawn; 
-		}	
 	}
 	void OnCollisionExit2D(Collision2D collision){
 		if (collision.gameObject.tag == "Ground") {
+			//prevent player from jumping
 			jump = false; 
 		}
 	}
