@@ -8,6 +8,7 @@ public class PlayerStatus : MonoBehaviour {
 	public bool deflector = false; 
 	PlayerController controller;
 	public AudioClip[] deathClips = new AudioClip[11];
+
 	// Use this for initialization
 	void Start (){ 
 		controller = GetComponent<PlayerController>();
