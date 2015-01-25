@@ -5,8 +5,7 @@ public class PlayerController : MonoBehaviour {
 	public float maxVelocity;
 	public float maxJump; 
 	public GameObject player;
-	bool jump = false;
-	public bool deflector = false;  
+	public bool jump = false;  
 	// Use this for initialization
 	void Start () {
 		DontDestroyOnLoad(player);

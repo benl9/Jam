@@ -42,7 +42,6 @@ public class PlayerStatus : MonoBehaviour {
 			}
 			else if (deaths == 12){
 				deflector = true; 
-				controller.deflector = true; 
 				//play specific sound clip
 			}
 			else{
