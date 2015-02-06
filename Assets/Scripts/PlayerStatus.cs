@@ -12,6 +12,7 @@ public class PlayerStatus : MonoBehaviour {
 	// Use this for initialization
 	void Start (){ 
 		controller = GetComponent<PlayerController>();
+		spawn = transform.position; 
 	}
 	// Update is called once per frame
 	void Update () {

@@ -61,5 +61,6 @@ public class PlayerMusic : MonoBehaviour {
 		audio.Play (); 
 		yield return new WaitForSeconds(audio.clip.length);
 		audio.clip = end[4]; 
+		audio.Play (); 
 	}
 }
